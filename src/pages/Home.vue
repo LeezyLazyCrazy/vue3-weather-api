@@ -12,7 +12,7 @@ import NavBar from "../components/NavBar.vue";
 import WeatherParent from "../components/WeatherParent.vue";
 
 export default {
-    components: { NavBar, WeatherParent },
+    components: { NavBar, WeatherParent},
     Data(){
         return {};
     },
