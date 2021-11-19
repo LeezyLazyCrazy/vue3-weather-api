@@ -2,17 +2,17 @@
   <div id="todayWeather">
     <div class="date">
       <p>실시간 일기예보</p>
-      <p>목요일</p>
+      <p>{{ today }}</p>
     </div>
     <div class="weather">
-      <p class="cityName">{{ weather.name }}</p>
-      <p class="countryName">{{ country.country }}</p>
-      <p class="currentTemp">10도</p>
+      <p class="cityName">📍{{ weather.name }}</p>
+      <p class="countryName">🌍{{ country.country }}</p>
+      <p class="currentTemp">{{ Math.round(temp.temp) }}🌡</p> 
       <img src="" alt="">
       <div class="etcData">
-        <p class="highTemp">최고온도 : {{}}</p>
-        <p class="lowTemp">최저온도 : {{}}</p>
-        <p class="humidity">현재습도 : {{ temp.humidity }}</p>
+        <p class="highTemp">최고온도 : {{ Math.round(temp.temp_max) }}℃</p>
+        <p class="lowTemp">최저온도 : {{ Math.round(temp.temp_min) }}℃</p>
+        <p class="humidity">현재습도 : {{ temp.humidity }} %</p>
       </div>
       <div class="icon-box">
         <img src="" alt="">
@@ -25,9 +25,20 @@
 import axios from "axios";
 import dayjs from "dayjs";
 
+import 'dayjs/locale/ko'
+
+dayjs.locale('ko') // global로 한국어 locale 사용
+const date = dayjs('2019-03-01')
+console.log(date.format('dddd')) // '금요일'
+const date2 = dayjs('2019-03-01').locale('en') // 해당 인스턴스에서만 영어 locale사용
+console.log(date2.format('dddd')) // 'Fri'
+
 export default {
+  component: {dayjs},
   data(){
     return{
+      //Date
+      today: dayjs().format("dddd"), // display 
       //Total Data
       weather:{},
       //temp
@@ -37,13 +48,14 @@ export default {
     }
   },
   created(){
-    //api.openweathermap.org/data/2.5/weather?q={city name}&appid=${API key}
+    //api.openweathermap.org/data/2.5/weather?q={city name}&appid=${API key}&units=metric
     var api_key = "6e9435abd019fcfcc2748f9c457cc209";
     var city_name = "Seoul"; //default 값이긴 함
-
+    
+     
     axios
       .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=${api_key}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=${api_key}&units=metric`
       )
       .then((response) => {
         console.log(response);
@@ -84,8 +96,7 @@ export default {
           right:50px;}
       }
     }
-  }
-  .weather{
+    .weather{
     position:absolute;
     bottom:0;
     right:50%;
@@ -100,7 +111,7 @@ export default {
 
     p{
       margin:30px;
-      color:white;
+      color:rgb(0, 25, 248);
       display: block;
       font-family: "Montserrat", sans-serif;
     }
@@ -114,9 +125,9 @@ export default {
     font-size: 1.25rem;
   }
    .currentTemp{
-     margin-top:42.5px;
+    margin-top:42.5px;
     width:100%;
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     font-family: "Cafe24Ssurround";
   }
    img{
@@ -126,12 +137,10 @@ export default {
      width:40px;
      height:40px;
   }
-  .etcDAta{
+  .etcData{
     position:absolute;
     bottom:0;
-    .hightTemp,
-    .lowTemp,
-    .humidity{
+    .hightTemp,.lowTemp,.humidity{
       width:100%;
       font-size: 0.85rem;
       font-family: "IM_Hyemin_Bold";
@@ -148,5 +157,7 @@ export default {
       border-radius:10px;
     }
   }
+    }
   }
+   
 </style>
