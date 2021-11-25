@@ -27,7 +27,7 @@ export default {
  transform: translateX(50%);
  transform: translateY(-50%);
  width:75%;
- height:85vh;
+ height:95vh;
  background-color:whitesmoke;
  box-shadow: 5px 5px 5px gray;
  margin:auto;

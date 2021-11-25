@@ -5,8 +5,8 @@
       <p>{{ today }}</p>
     </div>
     <div class="weather" v-bind:style="cityBg.backgroundImage">
-      <p class="cityName">📍{{ weather.name }}</p>
-      <p class="countryName">{{ country.country }}</p>
+      <p class="cityName">📍 {{ weather.name }}</p>
+      <p class="countryName"> {{ country.country }}</p>
       <p class="currentTemp">{{ Math.round(temp.temp) }}🌡</p> 
       <!-- <img src="~/assets/tempdegree.png" alt=""> -->
       <div class="etcData">
@@ -137,6 +137,12 @@ export default {
 
 <style lang="scss" scoped>
   @import "~/scss/main.scss";
+  @font-face {
+    font-family: 'SF_HailSnow';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HailSnow.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
 
   #todayWeather{
     position:relative;width:50%;height:100%;
@@ -147,13 +153,13 @@ export default {
       @include center-sb;
 
       p{
-        font-family:"GmarketSansBold";margin-top:17.5px;
+      font-family: 'SF_HailSnow'; margin-top:17.5px;
         &:first-child{
 
-          font-size:1.75rem;position:absolute;left:50px;
+          font-size:1.50rem;position:absolute;left:50px;
         }
         &:last-child{
-          font-family: "GmarketSanslight";
+         font-family: 'SF_IceMango';
           font-size:1.25rem;position:absolute;right:50px;
         }
       }
@@ -161,14 +167,14 @@ export default {
     .weather{
       position:absolute;bottom: 0;right:50%;transform:translateX(50%);width:80%;height:80%;border-radius:10px;background-position:center;background-size:cover;box-shadow:4px 4px 4px grey;background-color:cornflowerblue;
       p{
-        margin:30px;color:white;display:block;font-family: "Montserrat",sans-serif;
+        margin:23px;color:white;display:block;font-family:"Montserrat",sans-serif;
       }
 
       .cityName{
         width:100%;font-size:2rem;
       }
       .countryName{
-        width:100%;font-size:1.25rem;margin-top:-20px;
+        width:100%;font-size:1.25rem;margin-top:-15px;margin-bottom: 10px;
       }
       .currentTemp{
         width:100%;font-size:6rem;margin-top:10px;

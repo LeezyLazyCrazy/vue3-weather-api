@@ -10,15 +10,19 @@
     </div>
   </section>
   <section id="under">
-
+    <WeatherTimelyChild :market-lat="markerLat" :marker-lon="markerLon" />
   </section>
 </template>
 
 <script>
+import WeatherTimelyChild from "./WeatherTimelyChild.vue";  
 import WeatherTodayChild from "./WeatherTodayChild.vue";
+
+                                              
 export default {
     data() {
         return {
+            //상위 컴포넌트에서 하위 컴포넌트로 데이터를 전달 할 때 props를 활용한다.
             markerLat: {},
             markerLon: {},
             todayWeather: true,
@@ -131,7 +135,7 @@ export default {
             }
         },
     },
-    components: { WeatherTodayChild }
+    components: { WeatherTodayChild, WeatherTimelyChild }
 }
 </script>
 
