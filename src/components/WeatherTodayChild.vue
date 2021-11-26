@@ -5,7 +5,7 @@
       <p>{{ today }}</p>
     </div>
     <div class="weather" v-bind:style="cityBg.backgroundImage">
-      <p class="cityName">📍 {{ weather.name }}</p>
+      <p class="cityName">{{ weather.name }}</p>
       <p class="countryName"> {{ country.country }}</p>
       <p class="currentTemp">{{ Math.round(temp.temp) }}🌡</p> 
       <!-- <img src="~/assets/tempdegree.png" alt=""> -->
@@ -137,12 +137,20 @@ export default {
 
 <style lang="scss" scoped>
   @import "~/scss/main.scss";
-  @font-face {
-    font-family: 'SF_HailSnow';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HailSnow.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
+//   // @font-face {
+//   //   font-family: 'SF_HailSnow';
+//   //   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HailSnow.woff') format('woff');
+//   // }
+//   @font-face {
+//     font-family: 'Cafe24SsurroundAir';
+//     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+// }
+//   @font-face {
+//       font-family: 'SBAggroM';
+//       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
+//       font-weight: normal;
+//       font-style: normal;
+//   }
 
   #todayWeather{
     position:relative;width:50%;height:100%;
@@ -167,7 +175,7 @@ export default {
     .weather{
       position:absolute;bottom: 0;right:50%;transform:translateX(50%);width:80%;height:80%;border-radius:10px;background-position:center;background-size:cover;box-shadow:4px 4px 4px grey;background-color:cornflowerblue;
       p{
-        margin:23px;color:white;display:block;font-family:"Montserrat",sans-serif;
+        margin:23px;color:white;display:block; font-family: 'SF_IceMango'; 
       }
 
       .cityName{
@@ -186,7 +194,7 @@ export default {
         position:absolute;bottom:0;
 
         .highTemp,.lowTemp,.humidity{
-          width:100%;font-size:0.85rem;margin-top:-20px;
+          width:100%;font-size:1rem;margin-top:-20px;font-family: 'Cafe24SsurroundAir';font-weight: bold;
         }
       }
     }

@@ -37,8 +37,8 @@
               </div>
             </div>
             <div class="current-temp">
-              <p></p>
-              <img src="" alt="" />
+              <p>{{Math.round(weathers[index].temp)}}</p>
+             <img src="~/assets/tempdegree.png" alt="">
             </div>
           </div>
         </div>
