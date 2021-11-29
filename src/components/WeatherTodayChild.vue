@@ -131,7 +131,9 @@ export default {
       })
       .catch((error) => {console.log(error);});
       //get은 조회하는 용도의 메서드
-  }
+  },
+  
+
 }
 </script>
 
