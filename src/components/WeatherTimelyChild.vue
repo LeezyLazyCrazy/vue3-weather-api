@@ -1,45 +1,40 @@
 <template>
   <div id="container">
     <div class="title-box">
-      <p>내일의 날씨 시간별 현황</p>
+      <p>오늘의 날씨 시간별 현황</p>
     </div>
     <div class="timely-weather-box">
-      <div class="clicked-city">
+      <div class="cliecked-city">
         <div class="image">
-          <img v-bind:src="cityImage" alt="" />
+          <img :src="cityImage" alt="" />
         </div>
         <p>{{ cityName }}</p>
       </div>
       <div class="weather">
-        <div
-          class="timely-weather"
-          v-for="(weather, index) in weathers"
-          :key="index"
-          v-bind="changedPosition"
-        >
+        <div class="timely-weather" v-for="(weather, index) in weathers" :key="index" v-bind="changedPosition">
           <div class="icon-box">
             <div class="text-box">
               <p>{{ Unix_timestamp(weathers[index].dt) }}</p>
               <p>{{ description[index] }}</p>
             </div>
             <div class="icon">
-              <img v-bind:src="images[index]" alt="" />
+              <img :src="images[index]" alt="" />
             </div>
           </div>
           <div class="detail-box">
             <div class="contents">
               <div class="contents-1">
                 <img src="~/assets/windy.png" alt="" />
-                <p>{{ weathers[index].wind_speed }} m/s </p>
+                <p>{{ weathers[index].wind_speed }} m/s</p>
               </div>
               <div class="contents-2">
                 <img src="~/assets/humidity.png" alt="" />
-                <p>{{ weathers[index].humidity }} % </p>
+                <p>{{ weathers[index].humidity }} %</p>
               </div>
             </div>
             <div class="current-temp">
-              <p>{{Math.round(weathers[index].temp)}}</p>
-             <img src="~/assets/tempdegree.png" alt="">
+              <p>{{ Math.round(weathers[index].temp) }}</p>
+              <img src="~/assets/tempdegree.png" alt="" />
             </div>
           </div>
         </div>
@@ -67,9 +62,9 @@ export default {
   data() {
     return {
       cityName: "서울",
-      weathers: [{}], // 출력할 때 순차적으로 index 번호를 화면단에 보여준다.
-      description: [{}], // 시간별 날씨 설명 문구
-      images: [{}], // 시간별 날씨 아이콘
+      weathers: [{}],
+      description: [{}],
+      images: [{}],
       cityImage: "https://cdn-icons-png.flaticon.com/512/2090/2090313.png",
     };
   },
@@ -77,58 +72,49 @@ export default {
     var api_key = "6e9435abd019fcfcc2748f9c457cc209";
     var lat = 37.5683;
     var lon = 126.9778;
-
     axios
       .get(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={part}&appid=${api_key}&units=metric`
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${api_key}&units=metric`
       )
       .then((response) => {
-      // console.log(response);
+        // console.log(response);
 
         for (var i = 0; i < 24; i++) {
           this.weathers[i] = response.data.hourly[i];
           this.description[i] = response.data.hourly[i].weather[0].description;
 
-          var img = response.data.hourly[i].weather[0].icon; // 01n, 01d ...
+          var img = response.data.hourly[i].weather[0].icon;
           this.images[i] = `http://openweathermap.org/img/wn/${img}@2x.png`;
 
           if (img == "01d") {
-            // 해
             this.images[i] =
               "https://cdn-icons-png.flaticon.com/512/1163/1163764.png";
           }
           if (img == "01n") {
-            // 달
             this.images[i] =
               "https://cdn-icons-png.flaticon.com/512/1163/1163749.png";
           }
           if (img == "02d") {
-            // 해 구름
             this.images[i] =
               "https://cdn-icons-png.flaticon.com/512/1163/1163763.png";
           }
           if (img == "02n") {
-            // 달 구름
             this.images[i] =
               "https://cdn-icons-png.flaticon.com/512/1163/1163732.png";
           }
           if (img == "03d") {
-            // 구름
             this.images[i] =
               "https://cdn-icons-png.flaticon.com/512/1163/1163726.png";
           }
           if (img == "03n") {
-            // 구름
             this.images[i] =
               "https://cdn-icons-png.flaticon.com/512/1163/1163726.png";
           }
           if (img == "04d") {
-            // 흰 먹구름
             this.images[i] =
               "https://cdn-icons-png.flaticon.com/512/1163/1163736.png";
           }
           if (img == "04n") {
-            // 흰 먹구름
             this.images[i] =
               "https://cdn-icons-png.flaticon.com/512/1163/1163736.png";
           }
@@ -174,164 +160,167 @@ export default {
           }
         }
       })
-      .catch((error) => {console.log(error);});
+      .catch((error) => {
+        console.log(error);
+      });
   },
-  computed:{
-    changedPosition(){
+  computed: {
+    changedPosition() {
       const vm = this;
-      //전체 화면 내용이 다시 렌더링된 후에 아래 코드가 실행된다.
+
+      // 전체 화면내용이 다시 렌더링된 후에 아래의 코드가 실행됩니다.
       var api_key = "6e9435abd019fcfcc2748f9c457cc209";
       var lat = vm.markerLat;
       var lon = vm.markerLon;
 
       axios
         .get(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={part}&appid=${api_key}&units=metric`
+          `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${api_key}&units=metric`
         )
         .then((response) => {
-        //console.log(response);
+          // console.log(response);
+          for (var i = 0; i < 24; i++) {
+            vm.weathers[i] = response.data.hourly[i];
+            var img = response.data.hourly[i].weather[0].icon;
+            vm.images[i] = `http://openweathermap.org/img/wn/${img}@2x.png`;
 
-        for (var i = 0; i < 24; i++) {
-          vm.weathers[i] = response.data.hourly[i];
-          vm.description[i] = response.data.hourly[i].weather[0].description;
-
-          var img = response.data.hourly[i].weather[0].icon; // 01n, 01d ...
-          vm.images[i] = `http://openweathermap.org/img/wn/${img}@2x.png`;
-
-          if (img == "01d") {
-            // 해
-            vm.images[i] =
-              "https://cdn-icons-png.flaticon.com/512/1163/1163764.png";
+            if (img == "01d") {
+              vm.images[i] =
+                "https://cdn-icons-png.flaticon.com/512/1163/1163764.png";
+            }
+            if (img == "01n") {
+              vm.images[i] =
+                "https://cdn-icons-png.flaticon.com/512/1163/1163749.png";
+            }
+            if (img == "02d") {
+              vm.images[i] =
+                "https://cdn-icons-png.flaticon.com/512/1163/1163763.png";
+            }
+            if (img == "02n") {
+              vm.images[i] =
+                "https://cdn-icons-png.flaticon.com/512/1163/1163732.png";
+            }
+            if (img == "03d") {
+              vm.images[i] =
+                "https://cdn-icons-png.flaticon.com/512/1163/1163726.png";
+            }
+            if (img == "03n") {
+              vm.images[i] =
+                "https://cdn-icons-png.flaticon.com/512/1163/1163726.png";
+            }
+            if (img == "04d") {
+              vm.images[i] =
+                "https://cdn-icons-png.flaticon.com/512/1163/1163736.png";
+            }
+            if (img == "04n") {
+              vm.images[i] =
+                "https://cdn-icons-png.flaticon.com/512/1163/1163736.png";
+            }
+            if (img == "09d") {
+              vm.images[i] =
+                "https://cdn-icons-png.flaticon.com/512/1163/1163729.png";
+            }
+            if (img == "09n") {
+              vm.images[i] =
+                "https://cdn-icons-png.flaticon.com/512/1163/1163729.png";
+            }
+            if (img == "10d") {
+              vm.images[i] =
+                "https://cdn-icons-png.flaticon.com/512/1163/1163759.png";
+            }
+            if (img == "10n") {
+              vm.images[i] =
+                "https://cdn-icons-png.flaticon.com/512/1163/1163746.png";
+            }
+            if (img == "11d") {
+              vm.images[i] =
+                "https://cdn-icons-png.flaticon.com/512/1163/1163761.png";
+            }
+            if (img == "11n") {
+              vm.images[i] =
+                "https://cdn-icons-png.flaticon.com/512/1163/1163745.png";
+            }
+            if (img == "13d") {
+              vm.images[i] =
+                "https://cdn-icons-png.flaticon.com/512/1163/1163760.png";
+            }
+            if (img == "13n") {
+              vm.images[i] =
+                "https://cdn-icons-png.flaticon.com/512/1163/1163744.png";
+            }
+            if (img == "50d") {
+              vm.images[i] =
+                "https://cdn-icons-png.flaticon.com/512/1163/1163775.png";
+            }
+            if (img == "50n") {
+              vm.images[i] =
+                "https://cdn-icons-png.flaticon.com/512/1163/1163775.png";
+            }
           }
-          if (img == "01n") {
-            // 달
-            vm.images[i] =
-              "https://cdn-icons-png.flaticon.com/512/1163/1163749.png";
+          if (lat == 37.5683 && lon == 126.97779999999999) {
+            vm.cityName = "서울";
+            vm.cityImage =
+              "https://cdn-icons-png.flaticon.com/512/2090/2090313.png";
           }
-          if (img == "02d") {
-            // 해 구름
-            vm.images[i] =
-              "https://cdn-icons-png.flaticon.com/512/1163/1163763.png";
+          if (lat == 37.45597294471435 && lon == 126.70526384491123) {
+            vm.cityName = "인천";
+            vm.cityImage =
+              "https://cdn-icons-png.flaticon.com/512/4327/4327378.png";
           }
-          if (img == "02n") {
-            // 달 구름
-            vm.images[i] =
-              "https://cdn-icons-png.flaticon.com/512/1163/1163732.png";
+          if (lat == 37.2911 && lon == 127.00889999999998) {
+            vm.cityName = "수원";
+            vm.cityImage =
+              "https://cdn-icons-png.flaticon.com/512/4437/4437890.png";
           }
-          if (img == "03d") {
-            // 구름
-            vm.images[i] =
-              "https://cdn-icons-png.flaticon.com/512/1163/1163726.png";
+          if (lat == 37.7556 && lon == 128.89610000000067) {
+            vm.cityName = "강릉";
+            vm.cityImage =
+              "https://cdn-icons-png.flaticon.com/512/3313/3313361.png";
           }
-          if (img == "03n") {
-            // 구름
-            vm.images[i] =
-              "https://cdn-icons-png.flaticon.com/512/1163/1163726.png";
+          if (lat == 37.17590000000001 && lon == 128.988900000001) {
+            vm.cityName = "태백";
+            vm.cityImage =
+              "https://cdn-icons-png.flaticon.com/512/3420/3420238.png";
           }
-          if (img == "04d") {
-            // 흰 먹구름
-            vm.images[i] =
-              "https://cdn-icons-png.flaticon.com/512/1163/1163736.png";
+          if (lat == 36.3333 && lon == 127.41670000000002) {
+            vm.cityName = "대전";
+            vm.cityImage =
+              "https://cdn-icons-png.flaticon.com/512/3754/3754360.png";
           }
-          if (img == "04n") {
-            // 흰 먹구름
-            vm.images[i] =
-              "https://cdn-icons-png.flaticon.com/512/1163/1163736.png";
+          if (lat == 35.82189999999999 && lon == 127.1489) {
+            vm.cityName = "전주";
+            vm.cityImage =
+              "https://cdn-icons-png.flaticon.com/512/4647/4647036.png";
           }
-          if (img == "09d") {
-            vm.images[i] =
-              "https://cdn-icons-png.flaticon.com/512/1163/1163729.png";
+          if (lat == 35.1547 && lon == 126.9156) {
+            vm.cityName = "광주";
+            vm.cityImage =
+              "https://cdn-icons-png.flaticon.com/512/2913/2913483.png";
           }
-          if (img == "09n") {
-            vm.images[i] =
-              "https://cdn-icons-png.flaticon.com/512/1163/1163729.png";
+          if (lat == 35.800000000000004 && lon == 128.5500000000002) {
+            vm.cityName = "대구";
+            vm.cityImage =
+              "https://cdn-icons-png.flaticon.com/512/1684/1684426.png";
           }
-          if (img == "10d") {
-            vm.images[i] =
-              "https://cdn-icons-png.flaticon.com/512/1163/1163759.png";
+          if (lat == 35.537200000000006 && lon == 129.316700000003) {
+            vm.cityName = "울산";
+            vm.cityImage =
+              "https://cdn-icons-png.flaticon.com/512/4913/4913052.png";
           }
-          if (img == "10n") {
-            vm.images[i] =
-              "https://cdn-icons-png.flaticon.com/512/1163/1163746.png";
+          if (lat == 35.102800000000016 && lon == 129.0403000000013) {
+            vm.cityName = "부산";
+            vm.cityImage =
+              "https://cdn-icons-png.flaticon.com/512/4133/4133298.png";
           }
-          if (img == "11d") {
-            vm.images[i] =
-              "https://cdn-icons-png.flaticon.com/512/1163/1163761.png";
+          if (lat == 33.509699999999995 && lon == 126.5219) {
+            vm.cityName = "제주";
+            vm.cityImage =
+              "https://cdn-icons-png.flaticon.com/512/4918/4918411.png";
           }
-          if (img == "11n") {
-            vm.images[i] =
-              "https://cdn-icons-png.flaticon.com/512/1163/1163745.png";
-          }
-          if (img == "13d") {
-            vm.images[i] =
-              "https://cdn-icons-png.flaticon.com/512/1163/1163760.png";
-          }
-          if (img == "13n") {
-            vm.images[i] =
-              "https://cdn-icons-png.flaticon.com/512/1163/1163744.png";
-          }
-          if (img == "50d") {
-            vm.images[i] =
-              "https://cdn-icons-png.flaticon.com/512/1163/1163775.png";
-          }
-          if (img == "50n") {
-            vm.images[i] =
-              "https://cdn-icons-png.flaticon.com/512/1163/1163775.png";
-          }
-        }
-      })
+        })
         .catch((error) => {
           console.log(error);
         });
-
-        if (lat == 37.5683 && lon == 126.97779999999999) {
-          vm.cityName = '서울';
-          vm.cityImage = 'https://cdn-icons-png.flaticon.com/512/2090/2090313.png';
-        }
-        if (lat == 37.45597294471435 && lon == 126.70526384491123) {
-          vm.cityName = '인천';
-          vm.cityImage = 'https://cdn-icons-png.flaticon.com/512/4327/4327378.png';
-        }
-        if (lat == 37.2911 && lon == 127.00889999999998) {
-          vm.cityName = '수원';
-          vm.cityImage = 'https://cdn-icons-png.flaticon.com/512/4437/4437890.png';
-        }
-        if (lat == 37.7556 && lon == 128.89610000000067) {
-          vm.cityName = '강릉';
-          vm.cityImage = 'https://cdn-icons-png.flaticon.com/512/3313/3313361.png';
-        }
-        if (lat == 37.17590000000001 && lon == 128.988900000001) {
-          vm.cityName = '태백';
-          vm.cityImage = 'https://cdn-icons-png.flaticon.com/512/3420/3420238.png';
-        }
-        if (lat == 36.3333 && lon == 127.41670000000002) {
-          vm.cityName = '대전';
-          vm.cityImage = 'https://cdn-icons-png.flaticon.com/512/3754/3754360.png';
-        }
-        if (lat == 35.82189999999999 && lon == 127.1489) {
-          vm.cityName = '전주';
-          vm.cityImage = 'https://cdn-icons-png.flaticon.com/512/4647/4647036.png';
-        }
-        if (lat == 35.1547 && lon == 126.9156) {
-          vm.cityName = '광주';
-          vm.cityImage = 'https://cdn-icons-png.flaticon.com/512/2913/2913483.png';
-        }
-        if (lat == 35.800000000000004 && lon == 128.5500000000002) {
-          vm.cityName = '대구';
-          vm.cityImage = 'https://cdn-icons-png.flaticon.com/512/1684/1684426.png';
-        }
-        if (lat == 35.537200000000006 && lon == 129.316700000003) {
-          vm.cityName = '울산';
-          vm.cityImage = 'https://cdn-icons-png.flaticon.com/512/4913/4913052.png';
-        }
-        if (lat == 35.102800000000016 && lon == 129.0403000000013) {
-          vm.cityName = '부산';
-          vm.cityImage = 'https://cdn-icons-png.flaticon.com/512/4133/4133298.png';
-        }
-        if (lat == 33.509699999999995 && lon == 126.5219) {
-          vm.cityName = '제주';
-          vm.cityImage = 'https://cdn-icons-png.flaticon.com/512/4918/4918411.png';
-        }
     },
   },
   methods: {
@@ -344,7 +333,10 @@ export default {
   },
 };
 </script>
+
 // var api_key = "6e9435abd019fcfcc2748f9c457cc209";
+
+
 <style lang="scss" scoped>
 @import "~/scss/main.scss";
 @font-face {
@@ -353,20 +345,16 @@ export default {
     font-weight: normal;
     font-style: normal;
   }
-
 #container {
   padding: 25px 50px;
-
   .title-box {
     @include center-sb();
     width: 100%;
-
     p {
       font-family: 'SF_HailSnow';
       font-size: 1.50rem;
     }
   }
-
   .timely-weather-box {
     @include center-se();
     width: 100%;
@@ -375,19 +363,16 @@ export default {
     background-color: #8a8a8a56;
     border-radius: 10px;
     box-shadow: 4px 4px 4px gray;
-
     .clicked-city {
       @include c-center-se();
       width: 110px;
       height: 150px;
       background-color: #fff;
       border-radius: 10px;
-
       .image {
         width: 100px;
         height: 100px;
         border-radius: 5px;
-
         img {
           display: block;
           width: 100%;
@@ -405,7 +390,6 @@ export default {
       height: 150px;
       background-color: #ffffff56;
       border-radius: 10px;
-
       display: flex;
       overflow: auto;
       -ms-overflow-style: none; /* IE and Edge */
@@ -413,11 +397,9 @@ export default {
       &::-webkit-scrollbar {
         display: none; /* Chrome, Safari, Opera*/
       }
-
       [v-cloak] {
         display: none;
       }
-
       .timely-weather {
         min-width: 175px;
         width: 175px;
@@ -425,21 +407,17 @@ export default {
         border-radius: 10px;
         margin-right: 10px;
         background-color: white;
-
         &:last-child {
           margin-right: 0px;
         }
-
         .icon-box {
           width: 100%;
           height: 55%;
           @include center-sb();
-
           .text-box {
             @include c-center-se();
             width: 50%;
             height: 100%;
-
             p {
               &:first-child {
                 @include center();
@@ -463,7 +441,6 @@ export default {
             @include center();
             width: 50%;
             height: 100%;
-
             img {
               height: 65%;
             }
@@ -473,18 +450,15 @@ export default {
           width: 100%;
           height: 45%;
           display: flex;
-
           .contents {
             width: 50%;
             height: 100%;
             @include c-center-sb();
-
             .contents-1,
             .contents-2 {
               @include center-sb();
               width: 100%;
               height: 50%;
-
               img {
                 height: 55%;
               }
@@ -513,14 +487,12 @@ export default {
             @include center();
             width: 50%;
             height: 100%;
-
             p {
               text-align: center;
               margin: 10px 22.5px 0 0;
               font-size: 2.3rem;
               font-family: 'SF_HailSnow';
             }
-
             img {
               position: absolute;
               top: 12.5px;

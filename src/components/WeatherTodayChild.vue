@@ -26,7 +26,6 @@ import axios from "axios";
 import dayjs from "dayjs";
 import 'dayjs/locale/ko'
 dayjs.locale('ko') // global로 한국어 locale 사용
-
 export default {
   component: {dayjs},
   data(){
@@ -65,7 +64,6 @@ export default {
         this.temp = response.data.main;
         this.icons = response.data.weather[0].icon;
         this.imgUrl =  `http://openweathermap.org/img/wn/${this.icons}@2x.png`
-
       if (this.icons == "01d") {
           // 해
           return (this.imgUrl = "https://cdn-icons-png.flaticon.com/512/1163/1163764.png");
@@ -131,41 +129,26 @@ export default {
       })
       .catch((error) => {console.log(error);});
       //get은 조회하는 용도의 메서드
-  },
-  
-
+  }
 }
 </script>
 
 <style lang="scss" scoped>
   @import "~/scss/main.scss";
-//   // @font-face {
-//   //   font-family: 'SF_HailSnow';
-//   //   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HailSnow.woff') format('woff');
-//   // }
-//   @font-face {
-//     font-family: 'Cafe24SsurroundAir';
-//     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
-// }
-//   @font-face {
-//       font-family: 'SBAggroM';
-//       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
-//       font-weight: normal;
-//       font-style: normal;
-//   }
-
+  @font-face {
+    font-family: 'SF_HailSnow';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HailSnow.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
   #todayWeather{
     position:relative;width:50%;height:100%;
-
     .date{
       position:relative;width:100%;height:15%;
-
       @include center-sb;
-
       p{
       font-family: 'SF_HailSnow'; margin-top:17.5px;
         &:first-child{
-
           font-size:1.50rem;position:absolute;left:50px;
         }
         &:last-child{
@@ -177,9 +160,8 @@ export default {
     .weather{
       position:absolute;bottom: 0;right:50%;transform:translateX(50%);width:80%;height:80%;border-radius:10px;background-position:center;background-size:cover;box-shadow:4px 4px 4px grey;background-color:cornflowerblue;
       p{
-        margin:23px;color:white;display:block; font-family: 'SF_IceMango'; 
+        margin:23px;color:white;display:block;font-family:"Montserrat",sans-serif;
       }
-
       .cityName{
         width:100%;font-size:2rem;
       }
@@ -194,16 +176,14 @@ export default {
       }
       .etcData{
         position:absolute;bottom:0;
-
         .highTemp,.lowTemp,.humidity{
-          width:100%;font-size:1rem;margin-top:-20px;font-family: 'Cafe24SsurroundAir';font-weight: bold;
+          width:100%;font-size:0.85rem;margin-top:-20px;
         }
       }
     }
     .icon-box{
       position:absolute;top:6%;right:6%;width:100px;height:100px;background-color:rgba(245,245,245,0.5);border-radius:10px;
       @include center;
-
       img{
         height:75%;
       }
