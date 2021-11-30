@@ -1,6 +1,6 @@
 <template>
   <section id="upper">
-    <WeatherTodayChild :market-lat="markerLat" :marker-lon="markerLon" />
+    <WeatherTodayChild :markerLat="markerLat" :markerLon="markerLon" />
     <div id="map-box">
       <!-- id 값은 무조건 map으로 할당해야 kakao map api data를 불러들일 수 있다. -->
       <div id="map"></div>
@@ -10,7 +10,7 @@
     </div>
   </section>
   <section id="under">
-    <WeatherTimelyChild :market-lat="markerLat" :marker-lon="markerLon" />
+    <WeatherTimelyChild :markerLat="markerLat" :markerLon="markerLon" />
   </section>
 </template>
 

@@ -4,7 +4,7 @@
       <p>오늘의 날씨 시간별 현황</p>
     </div>
     <div class="timely-weather-box">
-      <div class="cliecked-city">
+      <div class="clicked-city">
         <div class="image">
           <img :src="cityImage" alt="" />
         </div>
