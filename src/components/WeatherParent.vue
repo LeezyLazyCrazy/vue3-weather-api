@@ -62,10 +62,18 @@ export default {
                     // 수원
                     lating: new kakao.maps.LatLng(37.2911, 127.0089),
                 },
+                // {
+                //     //동탄
+                //     lating: new kakao.maps.lating(37.2002, 127.09558700983115),
+                // },
                 {
                     // 대전
                     lating: new kakao.maps.LatLng(36.3333, 127.4167),
                 },
+                // {
+                //     // 원주
+                //     lating: new kakao.maps.LatLng(37.3481, 127.95825006334167),
+                // },
                 {
                     // 태백
                     lating: new kakao.maps.LatLng(37.1759, 128.9889),

@@ -272,6 +272,17 @@ export default {
             vm.cityImage =
               "https://cdn-icons-png.flaticon.com/512/4437/4437890.png";
           }
+          // if (lat == 37.1994 && lon == 127.09704708576955){
+          //   vm.cityName = "동탄";
+          //   vm.cityImage =
+          //     "https://cdn-icons-png.flaticon.com/512/4437/4437890.png";
+          // }
+          // if (lat == 37.3481 && lon == 127.95825006334167){
+          //   vm.cityName = "원주";
+          //   vm.cityImage =
+          //     "https://cdn-icons-png.flaticon.com/512/4437/4437890.png";
+          // }
+
           if (lat == 37.7556 && lon == 128.89610000000067) {
             vm.cityName = "강릉";
             vm.cityImage =
