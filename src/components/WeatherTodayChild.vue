@@ -1,7 +1,7 @@
 <template>
   <div id="todayWeather">
     <div class="date">
-      <p>실시간 일기예보!</p>
+      <p>실시간 일기예보</p>
       <p>{{ today }}</p>
     </div>
     <div class="weather" :style="cityBg.backgroundImage" v-bind="changedDetails">
