@@ -3,20 +3,24 @@
     <WeatherTodayChild :markerLat="markerLat" :markerLon="markerLon" />
     <div id="map-box">
       <!-- id 값은 무조건 map으로 할당해야 kakao map api data를 불러들일 수 있다. -->
-      <div id="map"></div>
-    </div>
+      <div id="map"></div></div>
     <div class="button-box">
-
+        <img src="~/assets/clock.png" alt="">
+        <button type="button" @click="showTodayWeather">오늘의 날씨 보기</button>
+        <img src="~/assets/24-hours.png" alt="">
+        <button type="button" @click="showTomorrowWeather">내일의 날씨 보기</button>
     </div>
   </section>
   <section id="under">
-    <WeatherTimelyChild :markerLat="markerLat" :markerLon="markerLon" />
+    <WeatherTimelyChild :markerLat="markerLat" :markerLon="markerLon" v-if="todayWeather" />
+    <WeatherTomorrowChild :markerLat="markerLat" :markerLon="markerLon" v-if="tomorrowWeather" />
   </section>
 </template>
 
 <script>
 import WeatherTimelyChild from "./WeatherTimelyChild.vue";  
 import WeatherTodayChild from "./WeatherTodayChild.vue";
+import WeatherTomorrowChild from "./WeatherTomorrowChild.vue";
                                               
 export default {
     data() {
@@ -62,18 +66,18 @@ export default {
                     // 수원
                     lating: new kakao.maps.LatLng(37.2911, 127.0089),
                 },
-                // {
-                //     //동탄
-                //     lating: new kakao.maps.lating(37.2002, 127.09558700983115),
-                // },
+                {
+                    //동탄
+                    lating: new kakao.maps.LatLng(37.2002, 127.09558700983115),
+                },
                 {
                     // 대전
                     lating: new kakao.maps.LatLng(36.3333, 127.4167),
                 },
-                // {
-                //     // 원주
-                //     lating: new kakao.maps.LatLng(37.3481, 127.95825006334167),
-                // },
+                {
+                    // 원주
+                    lating: new kakao.maps.LatLng(37.3481, 127.95825006334167),
+                },
                 {
                     // 태백
                     lating: new kakao.maps.LatLng(37.1759, 128.9889),
@@ -137,12 +141,12 @@ export default {
         },
         showTomorrowWeather() {
             if (this.todayWeather == true && this.tomorrowWeather == false) {
-                this.todayWeather = !this.todayWeather;
-                this.tomorrowWeather = !this.tomorrowWeather;
+                this.todayWeather = !this.todayWeather; //false => true  => false
+                this.tomorrowWeather = !this.tomorrowWeather; //true => false => true
             }
         },
     },
-    components: { WeatherTodayChild, WeatherTimelyChild }
+    components: { WeatherTodayChild, WeatherTimelyChild, WeatherTomorrowChild }
 }
 </script>
 
@@ -168,5 +172,29 @@ export default {
         box-shadow: 4px 4px 4px gray;
       }
     }
+
+    .button-box{
+        width:40%;
+        @include center-sb();
+        position: absolute;
+        right:50px;
+        bottom:-52.5px;
+
+        img{
+            height:35px;
+            margin-right: -50px;
+        }
+        button{
+            width:125px;
+            height:30px;
+            font-family:'SF_HailSnow';
+            cursor:pointer;
+            border-radius: 5px;
+        }
+    }
+  }
+  #under{
+      width:100%;
+      height:40%;      
   }
 </style>

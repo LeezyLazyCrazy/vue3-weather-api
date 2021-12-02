@@ -1,7 +1,7 @@
 <template>
   <div id="container">
     <div class="title-box">
-      <p>오늘의 날씨 시간별 현황</p>
+      <p>내일의 날씨 시간별 현황</p>
     </div>
     <div class="timely-weather-box">
       <div class="clicked-city">
@@ -80,7 +80,7 @@ export default {
         // console.log(response);
 
         for (var i = 0; i < 24; i++) {
-          this.weathers[i] = response.data.hourly[i];
+          this.weathers[i] = response.data.hourly[i + 24];
           this.description[i] = response.data.hourly[i].weather[0].description;
 
           var img = response.data.hourly[i].weather[0].icon;
@@ -180,7 +180,7 @@ export default {
         .then((response) => {
           // console.log(response);
           for (var i = 0; i < 24; i++) {
-            vm.weathers[i] = response.data.hourly[i];
+            vm.weathers[i] = response.data.hourly[i + 24 ];
             var img = response.data.hourly[i].weather[0].icon;
             vm.images[i] = `http://openweathermap.org/img/wn/${img}@2x.png`;
 
