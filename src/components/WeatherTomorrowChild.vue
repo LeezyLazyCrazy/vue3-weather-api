@@ -282,7 +282,6 @@ export default {
             vm.cityImage =
               "https://cdn-icons-png.flaticon.com/512/4437/4437890.png";
           }
-
           if (lat == 37.7556 && lon == 128.89610000000067) {
             vm.cityName = "강릉";
             vm.cityImage =
@@ -292,6 +291,16 @@ export default {
             vm.cityName = "태백";
             vm.cityImage =
               "https://cdn-icons-png.flaticon.com/512/3420/3420238.png";
+          }
+           if (lat == 37.24081341943151 && lon == 131.8781046033392) {
+            vm.cityName = "독도";
+            vm.cityImage =
+              "https://cdn-icons-png.flaticon.com/512/4918/4918411.png";
+          }
+           if (lat == 37.49442316861083 && lon == 130.89904574035654) {
+            vm.cityName = "울릉도";
+            vm.cityImage =
+              "https://cdn-icons-png.flaticon.com/512/4918/4918411.png";
           }
           if (lat == 36.3333 && lon == 127.41670000000002) {
             vm.cityName = "대전";

@@ -87,6 +87,14 @@ export default {
                     lating: new kakao.maps.LatLng(37.7556, 128.8961),
                 },
                 {
+                    // 울릉도
+                    lating: new kakao.maps.LatLng(37.49442316861083, 130.89904574035654),
+                },
+                {
+                    // 독도
+                    lating: new kakao.maps.LatLng(37.24081341943151, 131.8781046033392),
+                },
+                {
                     // 대구
                     lating: new kakao.maps.LatLng(35.8, 128.55),
                 },
