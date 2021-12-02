@@ -46,11 +46,8 @@ export default {
     },
     methods: {
         initMap() {
-            va
-            
-            
-            
-            = {
+            var mapContainer = document.getElementById("map"), // 지도를 표시할 section
+            mapOption = {
                 center: new kakao.maps.LatLng(36.73035, 127.967487),
                 level: 15, // 지도의 확대 레벨
             };
