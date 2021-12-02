@@ -46,10 +46,13 @@ export default {
     },
     methods: {
         initMap() {
-            var mapContainer = document.getElementById("map"), // 지도를 표시할 section
-            mapOption = {
+            va
+            
+            
+            
+            = {
                 center: new kakao.maps.LatLng(36.73035, 127.967487),
-                level: 13, // 지도의 확대 레벨
+                level: 15, // 지도의 확대 레벨
             };
             var map = new kakao.maps.Map(mapContainer, mapOption); // eslint-disable-line no-unused-vars
             // 마커가 표시될 위치입니다.
