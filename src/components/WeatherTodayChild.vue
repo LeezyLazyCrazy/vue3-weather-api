@@ -424,11 +424,11 @@ export default {
       p{
       font-family: 'SF_HailSnow'; margin-top:17.5px;
         &:first-child{
-          font-size:  2.5rem;position:absolute;left:70px;
+          font-size:  2rem;position:absolute;left:70px;
         }
         &:last-child{
          font-family: 'SF_IceMango';
-          font-size: 2rem;position:absolute;right:75px;
+          font-size: 1.5rem;position:absolute;right:-30px;
         }
       }
     }
