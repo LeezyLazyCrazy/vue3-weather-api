@@ -369,7 +369,7 @@ export default {
     @include center-se();
     width: 100%;
     height: 175px;
-    margin-top: 60px;
+    _margin-top: 60px;
     background-color: #8a8a8a56;
     border-radius: 10px;
     box-shadow: 4px 4px 4px gray;
