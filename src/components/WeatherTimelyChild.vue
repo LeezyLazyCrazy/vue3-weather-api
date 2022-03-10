@@ -362,7 +362,7 @@ export default {
     width: 100%;
     p {
       font-family: 'SF_HailSnow';
-      font-size: 2rem;
+      font-size: 1.25rem;
     }
   }
   .timely-weather-box {
