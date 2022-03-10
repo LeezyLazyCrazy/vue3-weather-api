@@ -428,7 +428,7 @@ export default {
         }
         &:last-child{
          font-family: 'SF_IceMango';
-          font-size: 1.5rem;position:absolute;right:-30px;
+          font-size: 1.25rem;position:absolute;right:-30px;
         }
       }
     }
