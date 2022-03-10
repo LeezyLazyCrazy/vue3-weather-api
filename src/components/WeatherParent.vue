@@ -40,7 +40,7 @@ export default {
             const script = document.createElement("script");
             /* global kakao */
             script.onload = () => kakao.maps.load(this.initMap);
-            script.src = "http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=db6e1cb00903e2cae0d9d4f6243bfd54";
+            script.src = "http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=a5cb12497da32120cdefd53da6fb2e1e";
             document.head.appendChild(script);
         }
     },
@@ -67,16 +67,8 @@ export default {
                     lating: new kakao.maps.LatLng(37.2911, 127.0089),
                 },
                 {
-                    //동탄
-                    lating: new kakao.maps.LatLng(37.2002, 127.09558700983115),
-                },
-                {
                     // 대전
                     lating: new kakao.maps.LatLng(36.3333, 127.4167),
-                },
-                {
-                    // 원주
-                    lating: new kakao.maps.LatLng(37.3481, 127.95825006334167),
                 },
                 {
                     // 태백

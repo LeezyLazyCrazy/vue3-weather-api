@@ -272,16 +272,6 @@ export default {
             vm.cityImage =
               "https://cdn-icons-png.flaticon.com/512/4437/4437890.png";
           }
-          if (lat == 37.1994 && lon == 127.09704708576955){
-            vm.cityName = "동탄";
-            vm.cityImage =
-              "https://cdn-icons-png.flaticon.com/512/4437/4437890.png";
-          }
-          if (lat == 37.3481 && lon == 127.95825006334167){
-            vm.cityName = "원주";
-            vm.cityImage =
-              "https://cdn-icons-png.flaticon.com/512/4437/4437890.png";
-          }
           if (lat == 37.7556 && lon == 128.89610000000067) {
             vm.cityName = "강릉";
             vm.cityImage =
@@ -366,20 +356,20 @@ export default {
     font-style: normal;
   }
 #container {
-  padding: 25px 50px;
+  padding: 50px 50px;
   .title-box {
     @include center-sb();
     width: 100%;
     p {
       font-family: 'SF_HailSnow';
-      font-size: 1.50rem;
+      font-size: 2rem;
     }
   }
   .timely-weather-box {
     @include center-se();
     width: 100%;
     height: 175px;
-    margin-top: 12.5px;
+    margin-top: 80px;
     background-color: #8a8a8a56;
     border-radius: 10px;
     box-shadow: 4px 4px 4px gray;

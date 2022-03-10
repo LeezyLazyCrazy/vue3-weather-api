@@ -419,16 +419,16 @@ export default {
   #todayWeather{
     position:relative;width:50%;height:100%;
     .date{
-      position:relative;width:100%;height:15%;
+      position:relative;width:100%;height:20%; font-weight: 500;
       @include center-sb;
       p{
       font-family: 'SF_HailSnow'; margin-top:17.5px;
         &:first-child{
-          font-size:1.50rem;position:absolute;left:50px;
+          font-size:  2.5rem;position:absolute;left:70px;
         }
         &:last-child{
          font-family: 'SF_IceMango';
-          font-size:1.25rem;position:absolute;right:50px;
+          font-size: 2rem;position:absolute;right:75px;
         }
       }
     }
@@ -438,7 +438,7 @@ export default {
         margin:23px;color:white;display:block;font-family:"Montserrat",sans-serif;
       }
       .cityName{
-        width:100%;font-size:2rem;
+        width:100%;font-size:2rem;font-weight: 600;
       }
       .countryName{
         width:100%;font-size:1.25rem;margin-top:-15px;margin-bottom: 10px;
